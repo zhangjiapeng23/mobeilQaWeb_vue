@@ -1,5 +1,6 @@
 <template>
     <index-nav-bar :navBarItem="navBarItem"></index-nav-bar>
+    
 </template>
 
 <script>
