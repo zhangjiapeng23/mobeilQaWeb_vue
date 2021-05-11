@@ -1,10 +1,15 @@
 <template>
-    <index-nav-bar :navBarItem="navBarItem"></index-nav-bar>
+    <div class="index-view">
+        <index-nav-bar :navBarItem="navBarItem"></index-nav-bar>
+    
+        <page-foot></page-foot>
+    </div>
     
 </template>
 
 <script>
 import IndexNavBar from 'views/indexView/IndexNavBar'
+import PageFoot from 'components/content/PageFoot'
 
 export default {
     name: 'IndexView',
@@ -27,7 +32,8 @@ export default {
         }
     },
     components: {
-        IndexNavBar
+        IndexNavBar,
+        PageFoot
     }
 }
 </script>

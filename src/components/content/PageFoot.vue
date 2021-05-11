@@ -1,6 +1,11 @@
 <template>
-    
-  
+  <div class="footer">
+      <footer>
+          <hr>
+          <p>&copy; ENDEAVOR Streaming.</p>
+      </footer>
+
+  </div>
 </template>
 
 <script>
@@ -10,5 +15,8 @@ export default {
 </script>
 
 <style>
+    .footer {
+        text-align: center;
+    }
 
 </style>
