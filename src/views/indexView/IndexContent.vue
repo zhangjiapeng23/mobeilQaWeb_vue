@@ -1,11 +1,14 @@
 <template>
-    <div class="content-list">
-        <index-content-item v-for="(item, index) in contentItems" :key="index" 
-        :title="item.title" 
-        :imgUrl="item.imgUrl" 
-        :cardText="item.description" 
-        :url="item.url">
-        </index-content-item>
+    <div class="index-content">
+        <div class="row">
+          <index-content-item v-for="(item, index) in contentItems" :key="index" 
+                    :title="item.title" 
+                    :subtitle="item.subtitle"
+                    :imgUrl="item.imgUrl" 
+                    :description="item.description" 
+                    :url="item.url">
+          </index-content-item>            
+        </div>
     </div>
   
 </template>
@@ -31,11 +34,6 @@ export default {
 </script>
 
 <style>
-  .content-list {
-      display: flex;
-      justify-content: space-around;
-      align-item: flex-start;
-      flex-wrap: warp;
-  }
+  
 
 </style>
