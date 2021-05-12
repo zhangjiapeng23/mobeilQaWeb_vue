@@ -1,7 +1,8 @@
 <template>
     <div class="index-view">
         <index-nav-bar :navBarItem="navBarItem"></index-nav-bar>
-    
+
+        <index-content :contentItems="contentItems"></index-content>
         <page-foot></page-foot>
     </div>
     
@@ -10,6 +11,7 @@
 <script>
 import IndexNavBar from 'views/indexView/IndexNavBar'
 import PageFoot from 'components/content/PageFoot'
+import IndexContent from 'views/indexView/IndexContent'
 
 export default {
     name: 'IndexView',
@@ -28,12 +30,23 @@ export default {
                     {title: 'Device Inventory', url: "https://docs.google.com/spreadsheets/d/1J9jiYsxbVMfI2Q8s-L781PLTokfRzmXjpNudO74NZOE/edit#gid=0"},
                     {title: 'GIT Server', url: "https://gitlab.neulion.com.cn:645/"}
                 ]
-            }
+            },
+            contentItems: [
+                {title: "test123", 
+                imgUrl: require("assets/img/qa_tools/star-icon.png"),
+                cardText: "test test test",
+                url: "/home"},
+                {title: "james12", 
+                imgUrl: require("assets/img/qa_tools/notification.png"),
+                cardText: "test test test  123",
+                url: "/james"}
+            ] 
         }
     },
     components: {
         IndexNavBar,
-        PageFoot
+        PageFoot,
+        IndexContent
     }
 }
 </script>

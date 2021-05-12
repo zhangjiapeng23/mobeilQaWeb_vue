@@ -1,21 +1,18 @@
 <template>
     <div class="content-item">
-        <b-card 
-         :title="title"
-         :img-src="imgUrl"
-         :img-alt="title"
-         img-top
-         :tag="title"
-         style="max-width: 20rem;"
-         class="md-2">
-         <b-link>
-             <b-card-text>
-             {{cardText}}
-            </b-card-text>
-         </b-link>
-         
-        </b-card>
-
+       <div class="thumbnail">
+                    <a :href="url" target="_self" :title="title">
+                        <img class="lazy" :src="imgUrl" width="100"
+                             height="100" :alt="title">
+                    </a>
+                    <div class="caption">
+                        <h3>
+                            <a :href="url" target="_self" :title="title">{{title}}<br>
+                            <small>{{title}}</small></a>
+                        </h3>
+                        <p>{{cardText}}</p>
+                    </div>
+                </div>
     </div>
 </template>
 
