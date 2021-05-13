@@ -24,7 +24,7 @@ export default {
     computed: {
         cardSelected: function() {
             if (this.cardSelect == true) {
-                return {border: "solid 1px blue"};
+                return {border: "solid 1px blue", backgroundColor: "snow"};
             } else {
                 return {};
             }
@@ -69,16 +69,19 @@ export default {
 <style>
     .card {
         width: 100%;
-        height: 260px;
+        height: 270px;
+        background-color: lightpink;
     }
     .card a{
         margin: auto;
         margin-top: 10px;
         margin-bottom: 10px;
+       
     }
     .card a img {
         width: 90px;
         height: 90px;
+       
     }
     .col-md-3 {
         padding-left: 0;
