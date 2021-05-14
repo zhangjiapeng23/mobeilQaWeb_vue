@@ -24,11 +24,18 @@ const routes = [{
         redirect: "/projectinfo/Android",
         meta: { name: "Platform", url: "/projectinfo" },
         children: [{
-                path: ":system",
+                path: "Android",
                 component: PlatformList,
-                meta: { name: "PlatformList", url: ":system" }
-            }
+                name: "Android",
+                meta: { name: "Android", url: "/projectinfo/Android" },
+            },
+            {
+                path: "iOS",
+                component: PlatformList,
+                name: "iOS",
+                meta: { name: "iOS", url: "/projectinfo/iOS" }
 
+            }
         ]
     }
 

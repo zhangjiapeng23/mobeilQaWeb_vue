@@ -4,7 +4,7 @@
             <ol class="breadcrumb" id="breadCrumb">
                 <li class="breadcrumb-item"><a href="/">Home</a></li>
                 <li class="breadcrumb-item active" aria-current="page" v-for="(item, index) in matchedUrl" :key="index" >
-                    <span  v-if="index === matchedUrl.length">
+                    <span  v-if="index < matchedUrl.length-1">
                         <a :href="item.url">{{item.name}}</a>
                     </span>
                     <span v-else>
@@ -28,6 +28,7 @@
         computed: {
             matchedUrl: function() {
                 let matchUrl = []
+                console.log(this.$route.matched)
                 this.$route.matched.filter(function(item, index, self) {
                     if (item.name) {
                         matchUrl.push(item.meta)
@@ -48,5 +49,15 @@
 <style>
     #breadCrumb {
         background-color: white;
+        margin-bottom: 0;
+        padding-left: 0;
+    }
+    
+    .breadcrumb-item {
+        font-size: 20px;
+    }
+    
+    .breadcrumb-item a {
+        text-decoration: none;
     }
 </style>

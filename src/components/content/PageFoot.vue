@@ -9,14 +9,14 @@
 </template>
 
 <script>
-export default {
-    name: "PageFoot"
-}
+    export default {
+        name: "PageFoot"
+    }
 </script>
 
 <style>
     .footer {
         text-align: center;
+        height: 150px;
     }
-
 </style>
