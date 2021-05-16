@@ -22,26 +22,25 @@
         components: {},
         data() {
             return {
-
             }
         },
         computed: {
             matchedUrl: function() {
                 let matchUrl = []
-                console.log(this.$route.matched)
-                this.$route.matched.filter(function(item, index, self) {
+                const route = this.$route;
+                route.matched.filter(function(item, index, self) {
                     if (item.name) {
-                        matchUrl.push(item.meta)
+                      if (item.name.startsWith(':')) {
+                        const key = item.name.split(":")[1];
+                        const param = route.params[key];
+                        item.meta['name'] = param;
+                        item.meta['url'] = item.meta['url'].split(":")[0] + param;
+                      }
+                      matchUrl.push(item.meta)
                     }
                 })
                 return matchUrl;
             }
-        },
-
-        data() {
-            return {
-
-            };
         }
     };
 </script>
@@ -51,10 +50,11 @@
         background-color: white;
         margin-bottom: 0;
         padding-left: 0;
+        font-style: italic;
     }
     
     .breadcrumb-item {
-        font-size: 20px;
+        font-size: 15px;
     }
     
     .breadcrumb-item a {

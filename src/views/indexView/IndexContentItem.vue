@@ -38,7 +38,7 @@ export default {
             }
         },
         subtitle: {
-            tyep: String,
+            type: String,
             default() {
                 return "subtitle"
             }

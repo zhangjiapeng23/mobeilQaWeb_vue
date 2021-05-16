@@ -2,7 +2,8 @@
   <div class="footer">
       <footer>
           <hr>
-          <p>&copy; ENDEAVOR Streaming.</p>
+          <img src="~assets/imgs/common/logo.png" height="35px">
+        <p>&copy; ENDEAVOR Streaming.</p>
       </footer>
 
   </div>
@@ -15,8 +16,14 @@
 </script>
 
 <style>
-    .footer {
+    footer {
         text-align: center;
-        height: 150px;
+        height: 120px;
     }
+
+    footer p {
+      font-size: 12px;
+      margin-top: 8px;
+    }
+
 </style>

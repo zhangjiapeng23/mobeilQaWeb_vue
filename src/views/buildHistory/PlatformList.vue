@@ -1,39 +1,32 @@
 <template>
     <div>
-        <bread-crumb></bread-crumb>
-        <hr>
-        <div>
-            <project-item :projectItems="projectItems"></project-item>
-        </div>
+      <div v-if="this.$route.matched.length == 2">
+        <project-item></project-item>
+      </div>
+      <div v-else>
+        <router-view></router-view>
+      </div>
     </div>
 </template>
 
 <script>
-    import BreadCrumb from 'components/content/BreadCrumb'
     import ProjectItem from 'views/buildHistory/ProjectItem'
+    import ProjectDetail from "./ProjectDetail";
 
     export default {
         name: 'Platformlist',
         components: {
-            BreadCrumb,
-            ProjectItem
+          ProjectItem,
+          ProjectDetail
         },
-
+        props: {
+        },
         data() {
             return {
-                platformName: this.$route.name,
-                projectItems: [{
-                    "imgUrl": require("assets/img/project_info/CNTV.png"),
-                    "url": "/test",
-                    "projectName": "james"
-                }, {
-                    "imgUrl": require("assets/img/project_info/CNTV.png"),
-                    "url": "/test",
-                    "projectName": "james124"
-                }]
+                platformName: this.$route.name
             };
         },
-        mounted() {
+        computed: {
 
         },
         methods: {
@@ -43,8 +36,5 @@
 </script>
 
 <style>
-    hr {
-        margin-top: 0;
-        margin-bottom: 60px;
-    }
+
 </style>

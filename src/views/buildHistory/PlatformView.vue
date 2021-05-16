@@ -15,48 +15,52 @@
                           <a class="nav-link" href="/projectinfo/iOS" :class="{active: system === 'iOS'}">iOS</a>
                         </li> 
                     </ul>
-                   
                 </div>
-                <div class="col-md-10"><router-view class="project-list"></router-view></div>
-                <div class="col-md-2">
-                    <div class="system-logo">
-                        <img :src="systemLogo" width="40px" height="40px">
-                    </div>  
+              <div class="col-md-10" style="border-left: 1px lightgray solid;">
+                <div class="row">
+                  <div class="breadCrumb col-md-12">
+                    <bread-crumb class="bread-crumb-build"></bread-crumb>
+                    <img :src="systemLogo" class="system-logo">
+                    <hr>
+                  </div>
+
+                  <div class="col-md-12">
+                    <router-view class="project-list">
+                    </router-view>
+                  </div>
+
+                </div >
+              </div>
                 </div>
-            </div>
+
         </div>
         
     </div>
 </template>
 
 <script>
-    import Platformlist from 'views/buildHistory/PlatformList'
+    import Platformlist from './PlatformList';
+    import BreadCrumb from 'components/content/BreadCrumb';
 
     export default {
-        name: 'PlatformView',
-        components: {
-            Platformlist
+      name: 'PlatformView',
+      components: {
+          Platformlist,
+          BreadCrumb
         },
-
-        data() {
-            return {
-
-            };
-        },
-        computed: {
+      computed: {
             systemLogo() {
-                if (this.$route.name === 'Android') {
-                    return require("assets/img/project_info/Android_icon.png")
+                if (this.system === 'Android') {
+                    return require("assets/imgs/project_info/Android_icon.png")
                 } else {
-                    return require("assets/img/project_info/iOS_icon.png")
+                    return require("assets/imgs/project_info/iOS_icon.png")
                 }
             },
             system() {
-                return this.$route.name
+                return this.$route.matched[1].name;
             }
         },
-
-        methods: {
+      methods: {
 
         },
     };
@@ -64,21 +68,9 @@
 
 <style>
     .system-list {
-        height: 400px;
-        border-right: 1px solid lightgrey;
         padding-top: 4px;
     }
-    
-    .system-logo {
-        padding-top: 80px;
-        padding-bottom: 10px;
-        border-right: 1px solid lightgrey;
-    }
-    
-    .system-logo img {
-        margin-left: 16px;
-    }
-    
+
     .system-list .nav-link {
         font-size: 20px;
     }
@@ -99,5 +91,19 @@
         margin-bottom: 20px;
         font-family: 'Courier New', Courier, monospace;
         font-weight: bold;
+    }
+    hr {
+      margin-top: 0;
+      clear: both;
+    }
+    .system-logo {
+      margin-top: 12px;
+      margin-right: 90px;
+      float: right;
+      width: 25px;
+      height: 25px;
+    }
+    .bread-crumb-build {
+      float: left;
     }
 </style>

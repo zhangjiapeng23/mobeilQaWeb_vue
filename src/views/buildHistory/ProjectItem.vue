@@ -7,10 +7,12 @@
         </div>
         <div class="row" v-else>
             <div class="projectItem col-md-3" v-for="(item, index) in projectItems" :key="index">
-                <div class="card" style="border: none;">
-                    <img class="text-center card-img"
-                         :src="item.imgUrl" alt="appicon"/>
-                        <a href="item.url" class="btn btn-info text-uppercase">{{item.projectName}}</a>
+                <div class="card" style="border: none; background-color: snow">
+                    <div class="inner-content">
+                      <img class="text-center card-img"
+                           :src="item.project_logo" alt="appicon"/>
+                      <a href="" @click="enterProjectDetail(item.project_name)" class="btn btn-info text-uppercase">{{item.project_name}}</a>
+                    </div>
                 </div>
             </div>
         </div>   
@@ -18,27 +20,30 @@
 </template>
 
 <script>
-    export default {
-        name: 'ProjectItem',
-        components: {},
-        props: {
-            projectItems: {
-                type: Array,
-                default () {
-                    return [];
-                }
-            }
-        },
-        data() {
-            return {
+import {getProjectList} from "network/projectBuildInfo";
 
+    export default {
+      name: 'ProjectItem',
+      components: {},
+
+      data() {
+            return {
+              systemName: this.$route.name,
+              projectItems: []
             };
         },
-        mounted() {
-
+      created() {
+        this.getProjectList()
+      },
+      methods: {
+        getProjectList() {
+          getProjectList(this.systemName).then(res => {
+            this.projectItems = res;
+          })
         },
-        methods: {
-
+        enterProjectDetail(projectName) {
+          this.$router.push('/projectinfo/'+this.systemName+'/' + projectName)
+        }
         },
     };
 </script>
@@ -48,18 +53,29 @@
         text-align: center;
         margin: 10px auto;
         display: block;
-        width: 150px;
+        min-width: 150px;
+        width: fit-content;
     }
-    
+    .inner-content {
+      margin: auto;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+    }
     .card-img {
-        width: 120px;
-        height: 120px;
-        text-align: center;
-        margin: 0 auto;
+        width: 80px;
+        height: 80px;
+        margin: auto;
         display: block;
     }
     
     .noContent {
         margin-top: 200px;
     }
+
+    .projectItem {
+      margin-bottom: 12px;
+    }
+
 </style>

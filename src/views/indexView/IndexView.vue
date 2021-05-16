@@ -19,49 +19,49 @@
                 contentItems: [{
                     title: "APP Build History",
                     subtitle: "APP Build History",
-                    imgUrl: require("assets/img/qa_tools/information.png"),
+                    imgUrl: require("assets/imgs/qa_tools/information.png"),
                     description: "Gather build info for Android and iOS.",
                     url: "/projectinfo"
                 }, {
                     title: "App Reviews",
                     subtitle: "App Reviews",
-                    imgUrl: require("assets/img/qa_tools/star-icon.png"),
+                    imgUrl: require("assets/imgs/qa_tools/star-icon.png"),
                     description: "Show reviews for each version and region from google play and app store.",
                     url: "/home"
                 }, {
                     title: "Deep Link",
                     subtitle: "Deep Link Console",
-                    imgUrl: require("assets/img/qa_tools/link.png"),
+                    imgUrl: require("assets/imgs/qa_tools/link.png"),
                     description: "Provide a list page to test mobile deeplink.",
                     url: "/home"
                 }, {
                     title: "Braze Notification",
                     subtitle: "Braze Notification Console",
-                    imgUrl: require("assets/img/qa_tools/notification.png"),
+                    imgUrl: require("assets/imgs/qa_tools/notification.png"),
                     description: "Batch send push through script.",
                     url: "/home"
                 }, {
                     title: "SDK Config Parser",
                     subtitle: "SDK Config Parser",
-                    imgUrl: require("assets/img/qa_tools/appkey.png"),
+                    imgUrl: require("assets/imgs/qa_tools/appkey.png"),
                     description: "Store known app key and parse app key to get config detail.",
                     url: "/home"
                 }, {
                     title: "Automation Test Report",
                     subtitle: "Automation Test Report",
-                    imgUrl: require("assets/img/qa_tools/report.png"),
+                    imgUrl: require("assets/imgs/qa_tools/report.png"),
                     description: "Automation Test Report for UI and Unit Test.",
                     url: "/home"
                 }, {
                     title: "Localization Test Tool",
                     subtitle: "Localization Test Tool",
-                    imgUrl: require("assets/img/qa_tools/localization.png"),
+                    imgUrl: require("assets/imgs/qa_tools/localization.png"),
                     description: "Format localization file to do tests.",
                     url: "/home"
                 }, {
                     title: "SDK Config Parser",
                     subtitle: "SDK Config Parser",
-                    imgUrl: require("assets/img/qa_tools/appkey.png"),
+                    imgUrl: require("assets/imgs/qa_tools/appkey.png"),
                     description: "Store known app key and parse app key to get config detail.",
                     url: "/home"
                 }, ]

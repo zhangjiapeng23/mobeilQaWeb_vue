@@ -31,20 +31,20 @@
                         title: 'Config',
                         url: "http://mobile.neulion.net.cn/svn/"
                     }, {
-                        title: 'Config encrypt tool',
+                        title: 'Config Encrypt Tool',
                         url: "http://mobile.neulion.net.cn/tools/jsonenc/"
                     }],
                     flod: [{
                         title: 'Git Book',
                         url: "http://mobile.neulion.net.cn/book/"
                     }, {
-                        title: 'Feature list',
+                        title: 'Feature List',
                         url: "https://docs.google.com/spreadsheets/d/1SSEna6OzUV2kgMFR6-oc-PWbwga7I3YIJn8ImaXvQpM/edit#gid=0"
                     }, {
                         title: 'Device Inventory',
                         url: "https://docs.google.com/spreadsheets/d/1J9jiYsxbVMfI2Q8s-L781PLTokfRzmXjpNudO74NZOE/edit#gid=0"
                     }, {
-                        title: 'GIT Server',
+                        title: 'Git Server',
                         url: "https://gitlab.neulion.com.cn:645/"
                     }]
                 }
