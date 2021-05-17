@@ -11,13 +11,11 @@
 
 <script>
     import ProjectItem from 'views/buildHistory/ProjectItem'
-    import ProjectDetail from "./ProjectDetail";
 
     export default {
         name: 'Platformlist',
         components: {
-          ProjectItem,
-          ProjectDetail
+          ProjectItem
         },
         props: {
         },

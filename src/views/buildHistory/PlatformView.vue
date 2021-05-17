@@ -98,7 +98,7 @@
     }
     .system-logo {
       margin-top: 12px;
-      margin-right: 90px;
+      margin-right: 30px;
       float: right;
       width: 25px;
       height: 25px;

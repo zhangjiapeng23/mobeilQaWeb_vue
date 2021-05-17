@@ -2,12 +2,30 @@
   <div class="project-detail">
     <b-table striped hover :items="items" :fields="system === 'Android'?AndroidFields:iOSFields" id="project-table">
       <template #cell(package_mapping_url)="data">
-        <a :href="data.value">Mapping</a>
+        <a :href="data.value" download="mapping.txt">Mapping</a>
       </template>
       <template #cell(date)="data">
         {{dateFormat(data.value)}}
       </template>
+      <template #cell(nid)="data">
+        <a :href="data.value">Detail</a>
+      </template>
+      <template #cell(x_framework)="data">
+        <span :class="{red: data.value === true}">{{data.value === true?'Yes':'No'}}</span>
+      </template>
+      <template #cell(snapshot)="data">
+        <span :class="{red: data.value === true}">{{data.value === true?'Yes':'No'}}</span>
+      </template>
     </b-table>
+    <hr>
+    <div class="paging">
+      <b-pagination-nav
+          :number-of-pages="pageTotal"
+          :link-gen="linkGen"
+          align="center"
+          limit="5">
+      </b-pagination-nav>
+    </div>
 
   </div>
 </template>
@@ -26,8 +44,13 @@ export default {
   },
   methods: {
     getBuildRecordList() {
-      getBuildRecordList(this.system, this.projectName, this.page, this.pageSize).then(res => {
+      const pageSize = this.$route.query.pageSize;
+      const page = this.$route.query.page;
+      getBuildRecordList(this.system, this.projectName, page, pageSize).then(res => {
         this.items = res.data;
+        this.page = res.page;
+        this.pageSize = res.pageSize;
+        this.pageTotal = res.totalPage;
       })
     },
     dateFormat(datetime) {
@@ -37,19 +60,22 @@ export default {
           date = d.getDate(),
           hour = d.getHours(),
           minute = d.getMinutes()
-
       month = month < 10 ? '0' + month : month;
       date = date < 10 ? '0' + date : date;
       hour = hour < 10 ? '0' + hour : hour;
       minute = minute < 10 ? '0' + minute:minute;
       return year + '-' + month + '-' + date + ' ' + hour + ':' + minute;
+    },
+    linkGen(pageNum) {
+      return this.$route.path + `?page=${pageNum}&pageSize=${this.pageSize}`
     }
   },
   data() {
     return {
       system: this.$route.matched[1].name,
       page: 1,
-      pageSize: 10,
+      pageSize: 1,
+      pageTotal: 1,
       iOSFields: [
         {
           key: "project_id",
@@ -110,7 +136,10 @@ export default {
         label: 'Detail',
         sortable: false
       }],
-      items: []
+      items: [],
+      red:{
+        color: "red"
+      }
     }
   },
   computed: {
@@ -133,6 +162,11 @@ export default {
   #project-table{
     font-size: 15px;
   }
-
+  .red {
+    color: red;
+  }
+  .paging {
+    margin-top: 40px;
+  }
 
 </style>

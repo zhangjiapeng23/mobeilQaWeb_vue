@@ -11,7 +11,7 @@
                     <div class="inner-content">
                       <img class="text-center card-img"
                            :src="item.project_logo" alt="appicon"/>
-                      <a href="" @click="enterProjectDetail(item.project_name)" class="btn btn-info text-uppercase">{{item.project_name}}</a>
+                      <a @click="enterProjectDetail(item.project_name)" class="btn btn-info text-uppercase">{{item.project_name}}</a>
                     </div>
                 </div>
             </div>
@@ -42,7 +42,13 @@ import {getProjectList} from "network/projectBuildInfo";
           })
         },
         enterProjectDetail(projectName) {
-          this.$router.push('/projectinfo/'+this.systemName+'/' + projectName)
+          this.$router.push({
+            path: '/projectinfo/'+this.systemName+'/' + projectName,
+            query: {
+              page: 1,
+              pageSize: 10
+            }
+          })
         }
         },
     };
