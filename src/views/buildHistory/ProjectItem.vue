@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="row" v-if="projectItems.length === 0">
+        <div class="row" v-if="projectItems !== undefined && projectItems.length === 0">
             <div class="col-md-12 text-center noContent">
                 <h2 >No content is available at this time.</h2>
             </div>

@@ -18,14 +18,24 @@
       </template>
     </b-table>
     <hr>
-    <div class="paging">
+    <div class="paging row">
+      <div class="col-md-4 text-right">
+      <b-dropdown class="page-size" variant="white" :text="pageSize.toString()" right>
+        <b-dropdown-item v-for="(item, index) in pageSizeList" :key="index" @click="selectPageSize(index)">
+          {{item}}
+        </b-dropdown-item>
+      </b-dropdown>
+      </div>
+      <div class="col-md-8 text-left">
       <b-pagination-nav
           :number-of-pages="pageTotal"
           :link-gen="linkGen"
-          align="center"
+          align="left"
           limit="5">
       </b-pagination-nav>
+      </div>
     </div>
+
 
   </div>
 </template>
@@ -68,6 +78,17 @@ export default {
     },
     linkGen(pageNum) {
       return this.$route.path + `?page=${pageNum}&pageSize=${this.pageSize}`
+    },
+    selectPageSize(index) {
+      this.pageSize = this.pageSizeList[index];
+      this.page = 1;
+      this.$router.push({
+        path: this.$route.path,
+        query: {
+          page: this.page,
+          pageSize: this.pageSize
+        }
+      });
     }
   },
   data() {
@@ -76,6 +97,7 @@ export default {
       page: 1,
       pageSize: 1,
       pageTotal: 1,
+      pageSizeList: [10, 25, 50, 100],
       iOSFields: [
         {
           key: "project_id",
@@ -136,10 +158,7 @@ export default {
         label: 'Detail',
         sortable: false
       }],
-      items: [],
-      red:{
-        color: "red"
-      }
+      items: []
     }
   },
   computed: {
@@ -167,6 +186,11 @@ export default {
   }
   .paging {
     margin-top: 40px;
+  }
+  .page-size {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 0.25rem;
+    height: 38px;
   }
 
 </style>

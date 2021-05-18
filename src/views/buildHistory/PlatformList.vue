@@ -4,7 +4,7 @@
         <project-item></project-item>
       </div>
       <div v-else>
-        <router-view></router-view>
+        <router-view :key="$route.fullPath"></router-view>
       </div>
     </div>
 </template>
