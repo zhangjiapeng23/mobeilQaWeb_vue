@@ -1,6 +1,6 @@
 <template>
   <div class="project-detail">
-    <b-table striped hover :items="items" :fields="system === 'Android'?AndroidFields:iOSFields" id="project-table">
+    <b-table striped hover :items="items" :fields="system === 'Android'?AndroidFields:iOSFields" id="project-table" outlined>
       <template #cell(package_mapping_url)="data">
         <a :href="data.value" download="mapping.txt">Mapping</a>
       </template>
@@ -8,7 +8,7 @@
         {{dateFormat(data.value)}}
       </template>
       <template #cell(nid)="data">
-        <a :href="data.value">Detail</a>
+        <a class="btn btn-light detail-button" @click="enterRecordDetail(data.value)">Detail</a>
       </template>
       <template #cell(x_framework)="data">
         <span :class="{red: data.value === true}">{{data.value === true?'Yes':'No'}}</span>
@@ -17,7 +17,7 @@
         <span :class="{red: data.value === true}">{{data.value === true?'Yes':'No'}}</span>
       </template>
     </b-table>
-    <hr>
+
     <div class="paging row">
       <div class="col-md-4 text-right">
       <b-dropdown class="page-size" variant="white" :text="pageSize.toString()" right>
@@ -89,6 +89,14 @@ export default {
           pageSize: this.pageSize
         }
       });
+    },
+    enterRecordDetail(nid) {
+      this.$router.push({
+        path: this.system === 'Android'? "/AndroidLibraryDetail":"/iOSLibraryDetail",
+        query: {
+          id: nid
+        }
+      })
     }
   },
   data() {
@@ -191,6 +199,12 @@ export default {
     border: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: 0.25rem;
     height: 38px;
+  }
+  .detail-button {
+    border: none;
+    background-color: transparent;
+    color: blue;
+    padding-left: 0;
   }
 
 </style>

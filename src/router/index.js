@@ -9,6 +9,8 @@ const PlatformList = () =>
     import ('views/buildHistory/PlatformList')
 const ProjectDetail = () =>
     import('views/buildHistory/ProjectDetail')
+const BuildRecordDetail = () =>
+    import('views/buildHistory/BuildRecordDetail')
 
 
 Vue.use(Router);
@@ -54,9 +56,19 @@ const routes = [{
                     }
                 ]
 
-            },
-
+            }
         ]
+    },
+    {
+        path: "/iOSLibraryDetail",
+        name: 'iOSLibraryDetail',
+        component: BuildRecordDetail
+
+    },
+    {
+        path: "/AndroidLibraryDetail",
+        name: 'AndroidLibraryDetail',
+        component: BuildRecordDetail
     }
 
 

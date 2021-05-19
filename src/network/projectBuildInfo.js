@@ -19,3 +19,13 @@ export function getBuildRecordList(system, projectName, page, pageSize) {
         }
     })
 }
+
+export function getBuildRecordDetail(system, nid) {
+    return request({
+        url: `projectInfo/${system}LibraryDetail/`,
+        params: {
+            id: nid,
+            format: 'json'
+        }
+    })
+}

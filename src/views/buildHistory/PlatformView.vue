@@ -9,10 +9,12 @@
                         </a>
                     </li>
                         <li class="nav-item">
-                          <a class="nav-link" href="/projectinfo/Android" :class="{active: system === 'Android'}">Android</a>
+                          <a class="nav-link" href="/projectinfo/Android" :class="{active: system === 'Android',
+                          disabled: system === 'Android'}">Android</a>
                         </li>
                         <li class="nav-item">
-                          <a class="nav-link" href="/projectinfo/iOS" :class="{active: system === 'iOS'}">iOS</a>
+                          <a class="nav-link" href="/projectinfo/iOS" :class="{active: system === 'iOS',
+                          disabled: system === 'iOS'}">iOS</a>
                         </li> 
                     </ul>
                 </div>
