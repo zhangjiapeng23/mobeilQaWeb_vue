@@ -89,6 +89,11 @@ const routes = [{
             }
         ]
 
+    },
+    {
+        path: '/appReviewRegister',
+        name: 'appReviewRegister',
+        component: () => import('views/appReview/ProjectRegister')
     }
 
 

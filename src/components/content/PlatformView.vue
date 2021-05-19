@@ -22,6 +22,7 @@
                 <div class="row">
                   <div class="breadCrumb col-md-12">
                     <bread-crumb class="bread-crumb-build"></bread-crumb>
+                    <slot name="middle"></slot>
                     <img :src="systemLogo" class="system-logo">
                     <hr>
                   </div>
