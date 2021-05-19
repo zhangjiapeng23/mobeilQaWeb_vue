@@ -27,7 +27,7 @@
                     subtitle: "App Reviews",
                     imgUrl: require("assets/imgs/qa_tools/star-icon.png"),
                     description: "Show reviews for each version and region from google play and app store.",
-                    url: "/home"
+                    url: "/appreview"
                 }, {
                     title: "Deep Link",
                     subtitle: "Deep Link Console",

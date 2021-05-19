@@ -4,9 +4,7 @@ import Vue from 'vue';
 const IndexView = () =>
     import ('views/indexView/IndexView')
 const PlatformView = () =>
-    import ('views/buildHistory/PlatformView')
-const PlatformList = () =>
-    import ('views/buildHistory/PlatformList')
+    import ('components/content/PlatformView')
 const ProjectDetail = () =>
     import('views/buildHistory/ProjectDetail')
 const BuildRecordDetail = () =>
@@ -23,14 +21,14 @@ const routes = [{
     },
     {
         path: "/projectinfo",
-        name: "Platform",
+        name: "projectinfo",
         component: PlatformView,
         redirect: "/projectinfo/Android",
-        meta: { name: "Platform", url: "/projectinfo" },
+        meta: { name: "Build History", url: "/projectinfo" },
         children: [
             {
                 path: "Android",
-                component: PlatformList,
+                component: () => import ('views/buildHistory/PlatformList'),
                 name: "Android",
                 meta: { name: "Android", url: "/projectinfo/Android"},
                 children: [
@@ -44,7 +42,7 @@ const routes = [{
             },
             {
                 path: "iOS",
-                component: PlatformList,
+                component: () => import ('views/buildHistory/PlatformList'),
                 name: "iOS",
                 meta: { name: "iOS", url: "/projectinfo/iOS"},
                 children: [
@@ -69,6 +67,28 @@ const routes = [{
         path: "/AndroidLibraryDetail",
         name: 'AndroidLibraryDetail',
         component: BuildRecordDetail
+    },
+    {
+        path: "/appreview",
+        name: "appReview",
+        component: PlatformView,
+        redirect: "/appreview/Android",
+        meta: {name: "App Review", url: '/appreview'},
+        children: [
+            {
+                path: "Android",
+                name: "appReviewAndroid",
+                meta: {name: "Android", url: '/appreview/Android'},
+                component: () => import('views/appReview/PlatformList')
+            },
+            {
+                path: "iOS",
+                name: "appReviewiOS",
+                meta: {name: "iOS", url: '/appreview/iOS'},
+                component: () => import('views/appReview/PlatformList')
+            }
+        ]
+
     }
 
 

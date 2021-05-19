@@ -9,11 +9,11 @@
                         </a>
                     </li>
                         <li class="nav-item">
-                          <a class="nav-link" href="/projectinfo/Android" :class="{active: system === 'Android',
+                          <a class="nav-link" :href="this.$route.matched[0].meta.url+'/Android'" :class="{active: system === 'Android',
                           disabled: system === 'Android'}">Android</a>
                         </li>
                         <li class="nav-item">
-                          <a class="nav-link" href="/projectinfo/iOS" :class="{active: system === 'iOS',
+                          <a class="nav-link" :href="this.$route.matched[0].meta.url+'/iOS'" :class="{active: system === 'iOS',
                           disabled: system === 'iOS'}">iOS</a>
                         </li> 
                     </ul>
@@ -41,13 +41,11 @@
 </template>
 
 <script>
-    import Platformlist from './PlatformList';
     import BreadCrumb from 'components/content/BreadCrumb';
 
     export default {
       name: 'PlatformView',
       components: {
-          Platformlist,
           BreadCrumb
         },
       computed: {
@@ -59,7 +57,7 @@
                 }
             },
             system() {
-                return this.$route.matched[1].name;
+                return this.$route.matched[1].meta.name;
             }
         },
       methods: {
