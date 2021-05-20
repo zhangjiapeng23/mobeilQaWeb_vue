@@ -28,8 +28,20 @@
 </template>
 
 <script>
+import {getProjectList} from "network/appReview";
+
 export default {
   name: "ProjectItem",
+  created() {
+    this.getProjectList();
+  },
+  methods: {
+    getProjectList() {
+      getProjectList().then(res => {
+        this.projectItems = res;
+      })
+    }
+  },
   data() {
     return {
       projectItems: [

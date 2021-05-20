@@ -1,9 +1,7 @@
 <template>
  <div>
    <header class="page-header text-center">
-     <a @click="backLastPage" class="btn btn-light" style="background-color: transparent; border: none; float: left">
-       <img src="~assets/imgs/common/icons8-return-50.png"  style="width: 35px;height: 35px;">
-     </a>
+     <back-last-page-button></back-last-page-button>
      <h1>{{projectName.toUpperCase()}}  {{projectVersion}} {{system==='Android'?'Libraries':'Frameworks'}}</h1>
    </header>
 
@@ -15,10 +13,15 @@
 </template>
 
 <script>
+import BackLastPageButton from "components/content/BackLastPageButton";
+
 import {getBuildRecordDetail} from "network/projectBuildInfo";
 
 export default {
   name: "BuildRecordDetail",
+  components: {
+    BackLastPageButton
+  },
   data() {
     return {
       recordData: [],
@@ -38,9 +41,6 @@ export default {
         this.projectName = res.project_name;
         this.projectVersion = res.project_version;
       })
-    },
-    backLastPage() {
-     this.$router.back()
     },
     snapshotLibrary(item, type) {
       if (!item || type !== 'row') return
