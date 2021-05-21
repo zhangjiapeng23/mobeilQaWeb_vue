@@ -1,20 +1,21 @@
 <template>
   <div class="app-review-projects">
     <div class="row">
-      <div class="col-md-4" v-for="(item, index) in projectItems" :key="index">
+      <div class="col-md-3 project-item" v-for="(item, index) in projectItems" :key="index">
        <div class="card text-center">
          <img :src="item.project_logo" class="inner-img card-img">
          <div class="card-body">
            <h3 class="card-title" style="margin-bottom: 0px">{{item.project_name}}</h3>
            <div class="button-group">
-             <a class="btn btn-light" style="border: lightgray 1px solid">Origin</a>
-             <a class="btn btn-info" style="border: lightgray 1px solid">Enter</a>
+             <a class="btn btn-light" style="border: lightgray 1px solid"
+                :href="system === 'Android'?item.android_origin:item.ios_origin" target="_blank">Origin</a>
+             <a class="btn btn-info" style="border: lightgray 1px solid" @click="enterProjectDetail(item.project_name)">Enter</a>
            </div>
          </div>
        </div>
       </div>
 
-      <div class="col-md-4">
+      <div class="col-md-3 project-item">
         <div class="card">
           <a href="/appReviewRegister" class="add-project">
             <img src="~assets/imgs/common/icons8-add-new-80.png" style="width: 40px; height: 40px;">
@@ -40,22 +41,26 @@ export default {
       getProjectList().then(res => {
         this.projectItems = res;
       })
+    },
+    enterProjectDetail(projectName) {
+      this.$router.push({
+        path: this.$route.path + '/' + projectName,
+        query: {
+          format: 'json',
+          page: 1,
+          pageSize: 10
+        }
+      }
+      )
     }
   },
   data() {
     return {
-      projectItems: [
-        {
-          project_name: 'NBA',
-          project_logo: "http://127.0.0.1:5000/static/imgs/google_appstore_reviews/nba_logo.webp",
-        },
-        {
-          project_name: 'NFL',
-          project_logo: "http://127.0.0.1:5000/static/imgs/google_appstore_reviews/nba_logo.webp",
-        }
-      ]
+      projectItems: [],
+      system: this.$route.matched[1].meta.name
     }
   }
+
 }
 </script>
 
@@ -78,6 +83,9 @@ export default {
   }
   .add-project {
     margin: auto;
+  }
+  .project-item {
+    margin-bottom: 10px;
   }
 
 </style>

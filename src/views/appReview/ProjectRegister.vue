@@ -80,7 +80,7 @@ export default {
         this.errorMessage.supportRegion = errorResp.support_region;
 
         if (res.code === 'success') {
-          this.$router.go(-1);
+          this.$router.push({name: 'appReview'});
         }
 
 
@@ -144,6 +144,10 @@ export default {
         {
           name: 'Brazil',
           value: 512
+        },
+        {
+          name: 'New Zealand',
+          value: 1024
         }
       ]
     }

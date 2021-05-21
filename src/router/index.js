@@ -79,13 +79,34 @@ const routes = [{
                 path: "Android",
                 name: "appReviewAndroid",
                 meta: {name: "Android", url: '/appreview/Android'},
-                component: () => import('views/appReview/PlatformList')
+                component: () => import('views/appReview/PlatformList'),
+                children: [
+                    {
+                        path: ":appReviewAndroidProject",
+                        name: ":appReviewAndroidProject",
+                        component: () => import('views/appReview/AppReviewDetail'),
+                        meta: {
+                            name: ":appReviewAndroidProject",
+                            url: "/appreview/Android/:appReviewAndroidProject"}
+                    }
+                ]
             },
             {
                 path: "iOS",
                 name: "appReviewiOS",
                 meta: {name: "iOS", url: '/appreview/iOS'},
-                component: () => import('views/appReview/PlatformList')
+                component: () => import('views/appReview/PlatformList'),
+                children: [
+                    {
+                        path: ":appReviewiOSProject",
+                        name: ":appReviewiOSProject",
+                        component: () => import('views/appReview/AppReviewDetail'),
+                        meta: {
+                            name: ":appReviewiOSProject",
+                            url: "/appreview/iOS/:appReviewiOSProject"
+                        }
+                    }
+                ]
             }
         ]
 

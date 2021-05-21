@@ -37,9 +37,10 @@
                         item.meta['url'] = item.meta['url'].split(":")[0] + param;
                       }
                       matchUrl.push(item.meta)
+
                     }
                 })
-                return matchUrl;
+              return matchUrl;
             }
         }
     };

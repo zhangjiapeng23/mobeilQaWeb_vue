@@ -19,7 +19,14 @@ export function createProject(formData) {
         headers: {
             'Content-Type': 'multipart/form-data'
         }
+    })
+}
 
+export function  getProjectDetail(platform, project, querySet) {
+    return request({
+        url: `/appReviews/${project}/${platform}/`,
+        method: 'get',
+        params: querySet
     })
 }
 
