@@ -1,6 +1,12 @@
 <template>
   <div class="review-detail">
    <review-summary :review-summary="reviewSummary"></review-summary>
+    <b-dropdown class="filter-btn" variant="white" :text="ratingFilter.toString()">
+      <b-dropdown-item v-for="(item, index) in ratingList">{{item}}</b-dropdown-item>
+    </b-dropdown>
+    <hr>
+
+
 
   </div>
 
@@ -46,6 +52,11 @@ export default {
   computed: {
     project() {
       return this.platform === 'Android'?this.$route.params.appReviewAndroidProject:this.$route.params.appReviewiOSProject
+    },
+    ratingFilter() {
+      const rating = this.querySet.rating;
+      console.log(rating);
+      return rating === undefined?'All':rating
     }
   }
 
@@ -53,5 +64,6 @@ export default {
 </script>
 
 <style scoped>
+
 
 </style>
