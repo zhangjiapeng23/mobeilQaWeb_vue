@@ -13,6 +13,13 @@ const BuildRecordDetail = () =>
 
 Vue.use(Router);
 
+// solve NavigationDuplicated: Avoided redundant navigation to current location
+const originalPush = Router.prototype.push
+Router.prototype.push = function push(location) {
+    return originalPush.call(this, location).catch((err) => err)
+}
+
+
 
 const routes = [{
         path: "",

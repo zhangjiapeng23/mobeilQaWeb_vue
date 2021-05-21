@@ -121,9 +121,11 @@ export default {
 
   }
   .star {
-    margin-right: 1px;
+    margin-right: 2px;
     margin-bottom: 3px;
     color: #F3F37FFC;
+    width: 13px;
+    height: 13px;
   }
   .score p {
     color: gray;
