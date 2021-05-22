@@ -54,7 +54,7 @@ import {getProjectList} from "network/projectBuildInfo";
     };
 </script>
 
-<style>
+<style scoped>
     .card a {
         text-align: center;
         margin: 10px auto;

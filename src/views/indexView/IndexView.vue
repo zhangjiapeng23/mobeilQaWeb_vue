@@ -33,7 +33,7 @@
                     subtitle: "Deep Link Console",
                     imgUrl: require("assets/imgs/qa_tools/link.png"),
                     description: "Provide a list page to test mobile deeplink.",
-                    url: "/home"
+                    url: "/deeplink"
                 }, {
                     title: "Braze Notification",
                     subtitle: "Braze Notification Console",
@@ -73,7 +73,7 @@
     }
 </script>
 
-<style>
+<style scoped>
     .page-main {
         margin-top: 50px;
     }
@@ -82,9 +82,5 @@
         font-weight: bold;
         font-style: italic;
         text-shadow: 2px 2px 2px lightgray;
-    }
-    
-    #page-footer {
-        margin-top: 60px;
     }
 </style>

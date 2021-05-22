@@ -35,8 +35,4 @@ export default {
   img {
       max-width: 180px;
   }
-  #nav-abr {
-      color: black;
-  }
-
 </style>

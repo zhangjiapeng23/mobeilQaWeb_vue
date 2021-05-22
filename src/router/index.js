@@ -20,7 +20,6 @@ Router.prototype.push = function push(location) {
 }
 
 
-
 const routes = [{
         path: "",
         name: "Home",
@@ -122,6 +121,27 @@ const routes = [{
         path: '/appReviewRegister',
         name: 'appReviewRegister',
         component: () => import('views/appReview/ProjectRegister')
+    },
+    {
+        path: "/deeplink",
+        name: "Deeplink",
+        component: () => import('views/deeplink/ProjectList'),
+        meta: {
+            name: 'Deeplink',
+            url: "/deeplink"
+        },
+        children: [
+            {
+                path: ":deeplinkProject",
+                name: ":deeplinkProject",
+                component: () => import('views/deeplink/ProjectDetail'),
+                meta: {
+                    name: ':deeplinkProject',
+                    url: "/deeplink/:deeplnkProject"
+                }
+            }
+
+        ]
     }
 
 
