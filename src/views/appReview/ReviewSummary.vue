@@ -43,8 +43,8 @@
         <div class="5-star">
           <div class="progress">
             <div class="progress-bar bg-success" role="progressbar"
-                 :style="{'width': reviewSummary.rating_king_percent[4]}"
-                 :aria-valuenow="reviewSummary.rating_king_percent[4].split('%')[0]"
+                 :style="{'width': reviewSummary.rating_kind_percent[4]}"
+                 :aria-valuenow="reviewSummary.rating_kind_percent[4].split('%')[0]"
                  aria-valuemin="0"
                  aria-valuemax="100"></div>
           </div>
@@ -54,8 +54,8 @@
         <div class="4-star">
           <div class="progress">
             <div class="progress-bar bg-info" role="progressbar"
-                 :style="{'width': reviewSummary.rating_king_percent[3]}"
-                 :aria-valuenow="reviewSummary.rating_king_percent[3].split('%')[0]"
+                 :style="{'width': reviewSummary.rating_kind_percent[3]}"
+                 :aria-valuenow="reviewSummary.rating_kind_percent[3].split('%')[0]"
                  aria-valuemin="0"
                  aria-valuemax="100"></div>
           </div>
@@ -65,8 +65,8 @@
         <div class="3-star">
           <div class="progress">
             <div class="progress-bar bg-primary" role="progressbar"
-                 :style="{'width': reviewSummary.rating_king_percent[2]}"
-                 :aria-valuenow="reviewSummary.rating_king_percent[2].split('%')[0]"
+                 :style="{'width': reviewSummary.rating_kind_percent[2]}"
+                 :aria-valuenow="reviewSummary.rating_kind_percent[2].split('%')[0]"
                  aria-valuemin="0"
                  aria-valuemax="100"></div>
           </div>
@@ -76,8 +76,8 @@
         <div class="2-class">
           <div class="progress">
             <div class="progress-bar bg-warning" role="progressbar"
-                 :style="{'width': reviewSummary.rating_king_percent[1]}"
-                 :aria-valuenow="reviewSummary.rating_king_percent[1].split('%')[0]"
+                 :style="{'width': reviewSummary.rating_kind_percent[1]}"
+                 :aria-valuenow="reviewSummary.rating_kind_percent[1].split('%')[0]"
                  aria-valuemin="0"
                  aria-valuemax="100"></div>
           </div>
@@ -87,8 +87,8 @@
         <div class="1-star">
           <div class="progress">
             <div class="progress-bar bg-danger" role="progressbar"
-                 :style="{'width': reviewSummary.rating_king_percent[0]}"
-                 :aria-valuenow="reviewSummary.rating_king_percent[0].split('%')[0]"
+                 :style="{'width': reviewSummary.rating_kind_percent[0]}"
+                 :aria-valuenow="reviewSummary.rating_kind_percent[0].split('%')[0]"
                  aria-valuemin="0"
                  aria-valuemax="100"></div>
           </div>
