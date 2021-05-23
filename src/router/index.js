@@ -137,14 +137,22 @@ const routes = [{
                 component: () => import('views/deeplink/ProjectDetail'),
                 meta: {
                     name: ':deeplinkProject',
-                    url: "/deeplink/:deeplnkProject"
-                }
+                    url: "/deeplink/:deeplinkProject"
+                },
+                children: [
+                    {
+                        path: "edit",
+                        name: "deeplinkEdit",
+                        component: () => import('views/deeplink/DeeplinkEdit'),
+                        meta: {
+                            name: 'edit',
+                            url: "/deeplink/:deeplinkProject/edit"
+                        }
+                    }
+                ]
             }
-
         ]
     }
-
-
 
 ]
 

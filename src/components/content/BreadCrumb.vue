@@ -30,11 +30,22 @@
                 const route = this.$route;
                 route.matched.filter(function(item, index, self) {
                     if (item.name) {
-                      if (item.name.startsWith(':')) {
-                        const key = item.name.split(":")[1];
-                        const param = route.params[key];
-                        item.meta['name'] = param;
-                        item.meta['url'] = item.meta['url'].split(":")[0] + param;
+                      let url = item.meta['url']
+                      if (url.indexOf(':') !== -1) {
+                        const re = /:(\w+)/g
+                        const res = url.match(re)
+                        let param = null;
+                        for (const prop of res) {
+                          const key = prop.split(":")[1];
+                          param = route.params[key];
+                          let keyRe = `:${key}`
+                          keyRe = new RegExp(keyRe, "g")
+                          url = url.replace(keyRe, param)
+                        }
+                        if (item.name.indexOf(':') !== -1) {
+                          item.meta['name'] = param;
+                        }
+                        item.meta['url'] = url
                       }
                       matchUrl.push(item.meta)
 

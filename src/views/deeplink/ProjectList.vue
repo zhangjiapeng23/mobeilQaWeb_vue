@@ -2,12 +2,22 @@
   <div class="project-list">
     <div class="container">
       <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-8">
           <bread-crumb id="deeplink-nav"></bread-crumb>
+        </div>
+        <div class="col-md-4 text-right">
+          <div v-if="this.$route.name === 'deeplinkEdit'">
+            <b-btn-group class="btn-group-sm">
+              <b-btn class="btn-primary">Edit Project</b-btn>
+              <b-btn class="btn-info">Add Deeplink</b-btn>
+            </b-btn-group>
+          </div>
+          <div v-else-if="this.$route.name === ':deeplinkProject'">
+            <a class="btn btn-info btn-sm" @click="enterEdit">Edit</a>
+          </div>
         </div>
       </div>
     </div>
-
 
     <div v-if="this.$route.matched.length===1">
       <div class="container">
@@ -69,6 +79,11 @@ export default {
       getProjects().then(res => {
         this.projectItems = res;
       })
+    },
+    enterEdit() {
+      this.$router.push({
+        name: 'deeplinkEdit'
+      })
     }
   },
   components: {
@@ -102,6 +117,12 @@ export default {
   }
   a:hover{
     text-decoration: none;
+  }
+  .btn-sm {
+    margin-top: 8px;
+  }
+  .btn-group-sm {
+    margin-top: 8px;
   }
 
 </style>
