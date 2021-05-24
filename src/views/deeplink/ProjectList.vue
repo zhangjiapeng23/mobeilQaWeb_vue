@@ -6,13 +6,7 @@
           <bread-crumb id="deeplink-nav"></bread-crumb>
         </div>
         <div class="col-md-4 text-right">
-          <div v-if="this.$route.name === 'deeplinkEdit'">
-            <b-btn-group class="btn-group-sm">
-              <b-btn class="btn-primary">Edit Project</b-btn>
-              <b-btn class="btn-info">Add Deeplink</b-btn>
-            </b-btn-group>
-          </div>
-          <div v-else-if="this.$route.name === ':deeplinkProject'">
+          <div v-show="this.$route.name === ':deeplinkProject'">
             <a class="btn btn-info btn-sm" @click="enterEdit">Edit</a>
           </div>
         </div>

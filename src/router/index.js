@@ -145,7 +145,7 @@ const routes = [{
                         name: "deeplinkEdit",
                         component: () => import('views/deeplink/DeeplinkEdit'),
                         meta: {
-                            name: 'edit',
+                            name: 'Edit',
                             url: "/deeplink/:deeplinkProject/edit"
                         }
                     }
