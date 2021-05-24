@@ -30,7 +30,19 @@
           </div>
           <div class="col-md-3">
             <div class="card">
-              <img src="~assets/imgs/common/icons8-add-new-80.png" class="add-icon">
+              <button class="add-icon-button" v-b-modal="'add-project'">
+                <img src="~assets/imgs/common/icons8-add-new-80.png" class="add-icon">
+              </button>
+              <b-modal id="add-project" title="Add Project" centered>
+                <label>Name: </label><b-form-input id="project-name"></b-form-input>
+                <label>Scheme: </label><b-form-input id="project-scheme"></b-form-input>
+                <template v-slot:modal-footer>
+                  <b-btn variant="info" @click="hideModal('add-project')">CANCEL</b-btn>
+                  <b-btn variant="success" @click="">OK</b-btn>
+                </template>
+              </b-modal>
+
+
             </div>
           </div>
 
@@ -48,7 +60,7 @@
 <script>
 import BreadCrumb from "components/content/BreadCrumb";
 
-import {getProjects} from "network/deeplink";
+import {getProjects, addProject} from "network/deeplink";
 
 export default {
   name: "ProjectList",
@@ -74,10 +86,25 @@ export default {
         this.projectItems = res;
       })
     },
+    addProject() {
+      const projectName = document.getElementById('project-name');
+      const projectScheme = document.getElementById('project-scheme');
+      addProject(projectName, projectScheme).then(res => {
+        if (res.code === 'success') {
+          console.log(res)
+        } else {
+          alert("Add project failed, please try again later.")
+          this.hideModal("add-project")
+        }
+      })
+    },
     enterEdit() {
       this.$router.push({
         name: 'deeplinkEdit'
       })
+    },
+    hideModal(id) {
+      this.$bvModal.hide(id);
     }
   },
   components: {
@@ -104,6 +131,12 @@ export default {
   .add-icon {
     width: 25px;
     height: 25px;
+  }
+  .add-icon-button {
+    width: 25px;
+    height: 25px;
+    border: none;
+    padding: 0;
     margin: auto auto;
   }
   .col-md-3 {
@@ -115,8 +148,6 @@ export default {
   .btn-sm {
     margin-top: 8px;
   }
-  .btn-group-sm {
-    margin-top: 8px;
-  }
+
 
 </style>

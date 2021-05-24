@@ -10,6 +10,17 @@ export function getProjects() {
     })
 }
 
+export function addProject(projectName, scheme) {
+    return request({
+        url: "/deeplink/",
+        method: 'post',
+        data: Qs.stringify({
+            project_name: projectName,
+            project_scheme: scheme
+        })
+    })
+}
+
 export function getDeeplinkList(project) {
     return request({
         url: `/deeplink/list/${project}/`,
