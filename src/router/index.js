@@ -152,6 +152,26 @@ const routes = [{
                 ]
             }
         ]
+    },
+    {
+        path: "/brazeNotification",
+        name: "brazeNotification",
+        component: () => import('views/brazeNotification/ProjectList'),
+        meta: {
+            name: "Projects",
+            url: '/brazeNotification'
+        },
+        children: [
+            {
+                path: ":notificationDetail",
+                name: ":notificationDetail",
+                component: () => import('views/brazeNotification/NotificationDetail'),
+                meta: {
+                    name: ":notificationDetail",
+                    url: "/brazeNotification/:notificationDetail"
+                }
+            }
+        ]
     }
 
 ]
