@@ -9,24 +9,35 @@
       </div>
       <div class="col-md-8 text-right">
         <b-btn-group>
-          <b-btn variant="info" >Edit Project</b-btn>
+          <b-btn variant="info" v-b-modal="'modify-project'">Edit Project</b-btn>
           <b-btn variant="primary" v-b-modal="'add-deeplink'">Add Deeplink</b-btn>
         </b-btn-group>
+        <b-modal id="modify-project" title="Modify project" centered>
+           <b-input-group prepend="Scheme" class="modify-scheme-group">
+             <b-form-input :value="projectScheme.split(':')[0]" id="modify-scheme"></b-form-input>
+           </b-input-group>
+          <template v-slot:modal-footer>
+            <b-btn variant="info" size="sm" @click="hideModal('modify-project')">CANCEL</b-btn>
+            <b-btn variant="success" size="sm" style="width: 80px" @click="modifyProject">OK</b-btn>
+          </template>
+
+        </b-modal>
+
         <b-modal id="add-deeplink" title="Add deeplink" centered>
           <b-input-group :prepend="projectScheme" class="add-input-group">
             <b-form-input id="add-deeplink-input"></b-form-input>
           </b-input-group>
-
-
           <template v-slot:modal-footer>
             <b-btn variant="info" @click="hideModal('add-deeplink')" size="sm">CANCEL</b-btn>
             <b-btn variant="success" size="sm" @click="addDeeplink">OK</b-btn>
           </template>
         </b-modal>
-
       </div>
 
-      <div class="col-md-12">
+      <div class="col-md-12" v-if="deeplinkItems.length === 0">
+        <h2 class="no-content">No content is available at this time.</h2>
+      </div>
+      <div class="col-md-12" v-else>
         <div class="list-group">
           <div class="list-group-item" v-for="(item, index) in deeplinkItems" :key="index">
             <a :href="item" style="float: left">{{item.content}}</a>
@@ -60,8 +71,6 @@
             <span style="clear: both"></span>
           </div>
         </div>
-
-
       </div>
 
 
@@ -71,7 +80,7 @@
 </template>
 
 <script>
-import {addDeeplink, removeDeeplink, modifyDeeplink} from "network/deeplink";
+import {addDeeplink, removeDeeplink, modifyDeeplink, modifyProject} from "network/deeplink";
 
 export default {
   name: "DeeplinkEdit",
@@ -118,14 +127,26 @@ export default {
           alert("Sorry, delete failed, please try again later.")
         }
       })
-
+    },
+    modifyProject() {
+      const scheme = document.getElementById('modify-scheme').value;
+      modifyProject(this.nid, scheme).then(res => {
+        if (res.code === 'success') {
+          this.hideModal('modify-project')
+          this.$router.go(0)
+        } else {
+          this.hideModal('modify-project')
+          alert("Project modify failed, please try again later.")
+        }
+      })
     }
   },
   data() {
     return {
       deeplinkItems: this.deeplinkList,
       projectScheme: this.scheme,
-      projectName: this.project
+      projectName: this.project,
+      projectNid: this.nid
     }
   },
   props: {
@@ -145,6 +166,12 @@ export default {
       type: String,
       default() {
         return '';
+      },
+    },
+    nid: {
+      type: Number,
+      default() {
+        return -1;
       }
     }
   }
@@ -185,6 +212,15 @@ h3 {
 }
  .add-input-group {
    margin-top: 30px;
+   margin-bottom: 30px;
+ }
+ .no-content {
+   margin-bottom: 200px;
+   margin-top: 100px;
+   text-align: center;
+ }
+ .modify-scheme-group {
+   margin-top: 15px;
    margin-bottom: 30px;
  }
 

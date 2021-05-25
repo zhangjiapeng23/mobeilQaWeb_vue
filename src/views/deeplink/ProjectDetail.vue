@@ -4,7 +4,8 @@
       <router-view :scheme="schemeName"
                    :deeplinkList="deeplinkList"
                    :project="projectName"
-                   v-if="deeplinkList.length&&schemeName.length&&projectName.length"></router-view>
+                   :nid="nid"
+                   v-if="nid&&schemeName.length&&projectName.length"></router-view>
     </div>
     <div v-else>
       <div class="row">
@@ -38,6 +39,7 @@ export default {
       deeplinkList: [],
       projectName: '',
       schemeName: '',
+      nid: 0,
     }
   },
   created() {
@@ -49,6 +51,7 @@ export default {
         this.deeplink = res.data;
         this.schemeName = res.scheme;
         this.projectName = res.project;
+        this.nid = res.id;
         for (const key in this.deeplink) {
           const group = this.deeplink[key];
           for (const deeplink of group ) {

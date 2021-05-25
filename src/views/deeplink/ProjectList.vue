@@ -20,13 +20,28 @@
             <hr>
           </div>
           <div class="col-md-3" v-for="(item, index) in projectItems" :key="index">
-            <a @click="enterProjectDetail(item.name)">
-              <div class="card">
-                <h4 class="card-title">
-                  {{item.name}}
-                </h4>
-              </div>
-            </a>
+            <div class="card">
+              <button class="delete-project" v-b-modal="item.name">
+                <b-icon icon="x-circle"></b-icon>
+              </button>
+              <b-modal title="Delete project" :id="item.name">
+                <p class="delete-description">Do you make sure delete {{item.name}} project ?</p>
+                <template v-slot:modal-footer>
+                  <b-btn variant="info" @click="hideModal(item.name)" size="sm">CANCEL</b-btn>
+                  <b-btn variant="success" @click="deletedProject(item.name, index)" size="sm">CONFIRM</b-btn>
+                </template>
+              </b-modal>
+
+              <a @click="enterProjectDetail(item.name)">
+                <div class="click-area">
+                  <h4 class="card-title">
+                    {{item.name}}
+                  </h4>
+                </div>
+              </a>
+
+            </div>
+
           </div>
           <div class="col-md-3">
             <div class="card">
@@ -37,8 +52,8 @@
                 <label>Name: </label><b-form-input id="project-name"></b-form-input>
                 <label>Scheme: </label><b-form-input id="project-scheme"></b-form-input>
                 <template v-slot:modal-footer>
-                  <b-btn variant="info" @click="hideModal('add-project')">CANCEL</b-btn>
-                  <b-btn variant="success" @click="">OK</b-btn>
+                  <b-btn variant="info" @click="hideModal('add-project')" size="sm">CANCEL</b-btn>
+                  <b-btn variant="success" @click="addDeeplinkProject" size="sm" style="width: 75px">OK</b-btn>
                 </template>
               </b-modal>
 
@@ -60,7 +75,7 @@
 <script>
 import BreadCrumb from "components/content/BreadCrumb";
 
-import {getProjects, addProject} from "network/deeplink";
+import {getProjects, addProject, deleteProject} from "network/deeplink";
 
 export default {
   name: "ProjectList",
@@ -86,15 +101,28 @@ export default {
         this.projectItems = res;
       })
     },
-    addProject() {
-      const projectName = document.getElementById('project-name');
-      const projectScheme = document.getElementById('project-scheme');
+    addDeeplinkProject() {
+      const projectName = document.getElementById('project-name').value;
+      const projectScheme = document.getElementById('project-scheme').value;
+      console.log(projectScheme, projectName)
       addProject(projectName, projectScheme).then(res => {
         if (res.code === 'success') {
-          console.log(res)
-        } else {
-          alert("Add project failed, please try again later.")
+          this.projectItems.push(res.data)
           this.hideModal("add-project")
+        } else {
+          this.hideModal("add-project")
+          alert("Add project failed, please try again later.")
+        }
+      })
+    },
+    deletedProject(project, index) {
+      deleteProject(project).then(res => {
+        if (res.code == 'success') {
+          this.projectItems.splice(index, 1);
+          this.hideModal(project)
+        } else {
+          this.hideModal(project);
+          alert("Delete Failed, please try again later.")
         }
       })
     },
@@ -125,8 +153,13 @@ export default {
     height: 280px;
     background-color: snow;
   }
+  .click-area {
+    width: 250px;
+    height: 255px;
+  }
   .card-title {
-    margin: auto auto;
+    margin-top: 85px;
+    text-align: center;
   }
   .add-icon {
     width: 25px;
@@ -147,6 +180,17 @@ export default {
   }
   .btn-sm {
     margin-top: 8px;
+  }
+  .delete-project {
+    border: none;
+    background-color: transparent;
+    width: 25px;
+    height: 25px;
+    margin-left: 220px;
+  }
+  .delete-description {
+    word-break: break-all;
+    margin-bottom: 40px;
   }
 
 

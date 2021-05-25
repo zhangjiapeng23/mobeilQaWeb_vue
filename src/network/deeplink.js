@@ -21,6 +21,16 @@ export function addProject(projectName, scheme) {
     })
 }
 
+export function deleteProject(project) {
+    return request({
+        url: '/deeplink/removeProject/',
+        method: 'post',
+        data: Qs.stringify({
+            project: project
+        })
+    })
+}
+
 export function getDeeplinkList(project) {
     return request({
         url: `/deeplink/list/${project}/`,
@@ -59,6 +69,17 @@ export function addDeeplink(project, content) {
         method: 'post',
         data: Qs.stringify({
             body: content
+        })
+    })
+}
+
+export function modifyProject(nid, projectScheme) {
+    return request({
+        url: "/deeplink/modifyProject/",
+        method: 'post',
+        data: Qs.stringify({
+            nid: nid,
+            scheme: projectScheme
         })
     })
 }
