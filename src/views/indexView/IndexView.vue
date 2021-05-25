@@ -39,7 +39,7 @@
                     subtitle: "Braze Notification Console",
                     imgUrl: require("assets/imgs/qa_tools/notification.png"),
                     description: "Batch send push through script.",
-                    url: "/home"
+                    url: "/brazeNotification"
                 }, {
                     title: "SDK Config Parser",
                     subtitle: "SDK Config Parser",
