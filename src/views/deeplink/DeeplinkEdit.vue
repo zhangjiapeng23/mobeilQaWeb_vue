@@ -29,7 +29,7 @@
           </b-input-group>
           <template v-slot:modal-footer>
             <b-btn variant="info" @click="hideModal('add-deeplink')" size="sm">CANCEL</b-btn>
-            <b-btn variant="success" size="sm" @click="addDeeplink">OK</b-btn>
+            <b-btn variant="success" size="sm" @click="addDeeplink" style="width: 70px">OK</b-btn>
           </template>
         </b-modal>
       </div>
